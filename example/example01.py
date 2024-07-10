@@ -31,19 +31,31 @@ print(f'To. {email}\n '
 #       f'지금까지 {datem} {date}요일 날씨 예보였습니다.')
 
 # 영수증 예제
-print('[음식나라]')
-print('---------------------')
-print('소주    2        6000 ')
-print('너나치킨 1        12000')
-print('---------------------')
-print('과세합계         16200')
-print('부가세           1800 ')
-print('---------------------')
-print('총합계           18000')
-print('받은금액          50000')
-print('잔돈             32000')
-print('---------------------')
-print('2014. 07. 07 14:35:24')
+date = '2014. 07. 07 14:35:24'
+soju = 2
+chiken = 1
+
+total = (soju * 3000) + (chiken * 12000)
+supply = int(total * 100 / 110)
+vat = int(total * 10 / 110)
+paid = 50000
+change = paid - total
+
+print(f'''
+[음식나라]
+---------------------
+소주\t\t{soju}\t\t{soju * 3000} 
+너나치킨\t{chiken}\t\t{chiken * 12000}
+---------------------
+과세합계\t\t\t{supply}
+부가세\t\t\t{vat} 
+---------------------
+총합계\t\t\t{total}
+받은금액\t\t\t{paid}
+잔돈\t\t\t\t{change}
+---------------------
+{date}
+''')
 
 #3
 rate1 = 646
