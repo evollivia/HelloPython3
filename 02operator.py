@@ -29,13 +29,13 @@ length = int(input('세로길이 : '))
 area = width * length
 print(f'''넓이 : {area} cm^2''')
 
-#신체질량지수BMI 구하기
+# 신체질량지수BMI 구하기
 weight = float(input('몸무계(kg) : '))
 hight = float(input('신장(m) : '))
-BMI = int(weight / hight**2)
+BMI = int(weight / hight ** 2)
 print(f'''BMI = {BMI}''')
 
-#홀짝게임
+# 홀짝게임
 coin = int(input('손 안에 동전 수를 입력하세요 : '))
 if coin % 2 == 0:
     print(0)
@@ -46,7 +46,7 @@ coins = int(input('손 안에 동전 수를 입력하세요 : '))
 result = coins % 2
 print(f'{coins}')
 
-#빵나누기
+# 빵나누기
 students = 97 // 3
 left = 97 % 3
 print(f'''
@@ -62,7 +62,58 @@ print(f'''
 # ...
 # n일차 -> 2 ** n명
 day = int(input('감염발생 후 일자 : '))
-infectedp = 2**day
+infectedp = 2 ** day
 print(f'''
 {day}일 이후 예상 감염자 수 : {infectedp}
 ''')
+
+# 할당 연산자
+
+# 논리 연산자
+
+# 논리연산자 단축식 평가
+
+# 삼항 연산자
+# 조건문을 한 줄록 표형할 수 있는 연산자
+# 참일때 값 if 조건식 else 거짓일때 값
+myscore = 70
+result = '합격' if myscore >= 90 else '불합격'
+print(result)
+
+# 복리계산기
+save = 5_000_000
+rate = 0.05
+years = 5
+
+save = save + (save * rate)
+save = save + (save * rate)
+save = save + (save * rate)
+save = save + (save * rate)
+save = save + (save * rate)
+print(f'5년 후 총 수령액 : {int(save)} 원')
+
+ci = int(save * ((1 + rate) ** years))
+print(f'{years}년 후 총 수령액 : {ci} 원')
+
+# 범퍼카 탑승
+hight = float(input('어린이의 신장을 입력하세요 : '))
+isRide = hight >= 120
+print(isRide)
+
+hight = float(input('어린이의 신장을 입력하세요 : '))
+isRide = 'True' if hight >= 120 else 'False'
+print(isRide)
+
+# 범퍼카탑승 가능 판별
+hight = float(input('어린이의 신장을 입력하세요 : '))
+isRide = (hight >= 120) and (hight < 170)
+print(isRide)
+
+isRide = 'True' if hight >= 120 and hight < 170 else 'False'
+print(isRide)
+
+# 적자/흑자 판별
+income = int(input('수입 : '))
+outcome = int(input('지출 : '))
+disc = '흑자' if (income > outcome) else '적자'
+print(f'{disc}')
