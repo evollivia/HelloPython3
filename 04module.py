@@ -43,4 +43,4 @@ print(dt.datetime.now().strftime('%Y년 %m월 %d일 %H시 %M분 %S초'))
 
 # 자동차 주행거리 계산
 
-
+# 컴퓨터 업무수량 파악
