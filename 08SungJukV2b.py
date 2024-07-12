@@ -40,26 +40,26 @@ mats.append(int(input('3번학생 수학 성적 : ')))
 
 # 성적 처리
 # 100~90 수, 89~ 80 우, 79~ 70 미, 69~ 60 양, 59~ 0 가
-tots1 = kors[0] + engs[0] + mats[0]
-tots.append(tots1)
-tots2 = kors[1] + engs[1] + mats[1]
-tots.append(tots2)
-tots3 = kors[2] + engs[2] + mats[2]
-tots.append(tots3)
+tot = kors[0] + engs[0] + mats[0]
+tots.append(tot)
+tot = kors[1] + engs[1] + mats[1]
+tots.append(tot)
+tot = kors[2] + engs[2] + mats[2]
+tots.append(tot)
 
-avgs1 = tots[0] / 3
-avgs.append(avgs1)
-avgs2 = tots[1] / 3
-avgs.append(avgs2)
-avgs3 = tots[2] / 3
-avgs.append(avgs3)
+avg = tots[0] / 3
+avgs.append(avg)
+avg = tots[1] / 3
+avgs.append(avg)
+avg = tots[2] / 3
+avgs.append(avg)
 
-grd1 = '수' if avgs[0] >= 90 else ('우' if avgs[0] >= 80 else ('미' if avgs[0] >= 70 else ('양' if avgs[0] >= 60 else '가')))
-grds.append(grd1)
-grd2 = '수' if avgs[1] >= 90 else ('우' if avgs[1] >= 80 else ('미' if avgs[1] >= 70 else ('양' if avgs[1] >= 60 else '가')))
-grds.append(grd2)
-grd3 = '수' if avgs[2] >= 90 else ('우' if avgs[2] >= 80 else ('미' if avgs[2] >= 70 else ('양' if avgs[2] >= 60 else '가')))
-grds.append(grd3)
+grd = '수' if avgs[0] >= 90 else ('우' if avgs[0] >= 80 else ('미' if avgs[0] >= 70 else ('양' if avgs[0] >= 60 else '가')))
+grds.append(grd)
+grd = '수' if avgs[1] >= 90 else ('우' if avgs[1] >= 80 else ('미' if avgs[1] >= 70 else ('양' if avgs[1] >= 60 else '가')))
+grds.append(grd)
+grd = '수' if avgs[2] >= 90 else ('우' if avgs[2] >= 80 else ('미' if avgs[2] >= 70 else ('양' if avgs[2] >= 60 else '가')))
+grds.append(grd)
 
 
 # 결과 출력
