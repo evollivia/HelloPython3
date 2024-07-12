@@ -21,8 +21,10 @@ if num % 2 == 0: print(f'짝수입니다')  # 코드 간략화
 
 # 속도위반 경고하기
 speed = int(input('자동차의 현재 속도는 : '))
+warn = ''
 if speed > 50:
-    print('속도 위반!!')
+    warn = '속도 위반!!'
+print(warn)
 
 # if ~ else
 # if문은 조건이 참일 경우에만 지정한 코드를 실핼하는데 비해
@@ -75,10 +77,10 @@ print(result)
 
 # 자동 온도 조절 장치 만들기
 temp = float(input('기계 온도를 입력하세요. '))
+out = '팬(Fan) 중지'
 if temp >= 40:
-    print('팬(Fan) 가동')
-else:
-    print('팬(Fan) 중지')
+    out = '팬(Fan) 가동'
+print(out)
 
 # 중첩 if문
 # if문 속에 또 다른 if문을 포함시켜 작성하는 조건문
@@ -127,8 +129,40 @@ elif avg >= 60:
 print(grade)
 
 # 자동 주문 시스템 만들기
+menuIntro = int(input('Good morning. Nice to meet you.\n'
+                      'Where are you from?\n'
+                      'Please select a number\n'
+                      '1.대한민국 2.UAS 3.中國'))
+msg = 'Would you like to order?'
+if menuIntro == 1:
+    msg = '주문하시겠어요?'
+elif menuIntro == 3:
+    msg = '您想訂購嗎？'
+else:
+    msg
+print(msg)
 
 # 국가 재난지원금 수령액 조회하기
+people = int(input('인원수를 입력하세요. '))
+money = '1,000,000원 지원'
+if people == 1:
+    money = '400,000원 지원'
+elif people == 2:
+    money = '600,000원 지원'
+elif people == 3:
+    money = '800,000원 지원'
+print(money)
+
+# 개선 BMI지수 출력
+bmi = int(input('BMI지수를 입력하세요. '))
+status = '저체중'
+if bmi > 140: status = '고도비만'
+elif bmi > 120: status = '비만'
+elif bmi > 110: status = '과체중'
+elif bmi > 90: status = '정상 체중'
+print(f'BMI지수 : {bmi}\n'
+      f'진단결과 : {status} 입니다.')
+
 
 # if 조건문 대체 1 - switch 모방
 # 조건이 많아지는 경우, 다중 조건문 역시 복잡해짐
@@ -179,13 +213,106 @@ match avg:
     case _: grade = 'F'
 print(grade)
 
-# 속도 위반 경고
-# 자동 온도 조절 장치
-# 자동주문시스템
-# 국가 재난지원금 수령액 조회
-# 개선 BMI지수 출력
+
 # 버스 전용차로 단속
+msg1 = '''1.월~금, 2.토요일, 3.공휴일'
+요일을 선택하세요.'''
+msg2 = '''
+버스 전용차로 단속중 입니다.
+1.버스, 2.승용차
+차종을 선택하세요.'''
+msg3 = '버스 전용차로 위반!'
+msg4 = '버스입니다.'
+msg5 = '토요일 및 공휴일은 단속하지 않습니다.'
+
+dayweek = int(input(msg1))
+result = ''
+carType = ''
+if dayweek == 1:                # 평일여부 확인
+    carType = int(input(msg2))  # 차종 확인
+    if carType == 1:
+        result = msg4
+    else:
+        result = msg3
+else:
+    result = msg5
+print(result)
+
 # 마스크 구매가능 요일
+endBirthYear = int(input('출생 연도 끝자리 입력 : '))
+age = int(input('만 나이 입력 : '))
+day = '언제든 구매 가능합니다.'
+if age < 65:
+    # if endBirthYear == 1 or endBirthYear == 6:
+    #     day = '월요일 구매 가능합니다.'
+    # elif endBirthYear ==2 or endBirthYear == 7:
+    #     day = '화요일 구매 가능합니다.'
+    # elif endBirthYear ==3 or endBirthYear == 8:
+    #     day = '수요일 구매 가능합니다.'
+    # elif endBirthYear ==4 or endBirthYear == 9:
+    #     day = '목요일 구매 가능합니다.'
+    # elif endBirthYear ==5 or endBirthYear == 0:
+    #     day = '금요일 구매 가능합니다.'
+    match endBirthYear:
+        case 1 | 6:
+            day = '월요일 구매 가능합니다.'
+        case 2 | 7:
+            day = '화요일 구매 가능합니다.'
+        case 3 | 8:
+            day = '수요일 구매 가능합니다.'
+        case 4 | 9:
+            day = '목요일 구매 가능합니다.'
+        case 5 | 0:
+            day = '금요일 구매 가능합니다.'
+print(day)
+
+
 # 차량 2부제
+from datetime import datetime
+num = int(input('차량 번호 4자리를 입력하세요.'))
+day = int(datetime.today().day)  # 오늘 날짜의 일만 추출
+msg1 = '오늘 입차 : 번호가 홀수인 차량'
+msg2 = '귀하의 차량은 입차 불가능합니다.'
+if day % 2 == 0:
+    msg1 = '오늘 입차 : 번호가 짝수인 차량'
+if day % 2 == num % 2:
+    msg2 = '귀하의 차량은 입차 가능합니다.'
+print(f'''
+오늘 날짜 : {day}
+{msg1}
+{msg2}''')
+
+
 # 생존율 출력
+msg = '최초 장비를 사용하기까지 걸린 시간(초)을 입력하세요. '
+sec = int(input(msg))
+rate = '생존율 : 25% 미만'
+if sec <= 60: rate = '생존율 : 85%'
+elif sec <= 120: rate = '생존율 : 76%'
+elif sec <= 180: rate = '생존율 : 66%'
+elif sec <= 240: rate = '생존율 : 57%'
+elif sec <= 300: rate = '생존율 : 47%'
+elif sec <= 300: rate = '생존율 : 35%'
+elif sec <= 360: rate = '생존율 : 25% 미만'
+print(rate)
+
 # 전기요금 계산기
+elc = int(input('전기 사용량을 입력하세요. '))
+baseprice = 910
+unitprice = 99.3
+powerprice = 0
+
+if elc > 400:
+    baseprice = 7300
+    unitprice = 280.6
+
+elif elc > 200:
+    baseprice = 1600
+    unitprice = 187.9
+
+powerprice = baseprice + (unitprice * elc)
+print(f'''
+사용량 : {elc} kwh
+기본요금 : {baseprice} 원
+단가 : {unitprice} 원
+전기요금 : {powerprice}원''')
