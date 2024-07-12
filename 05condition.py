@@ -313,6 +313,6 @@ elif elc > 200:
 powerprice = baseprice + (unitprice * elc)
 print(f'''
 사용량 : {elc} kwh
-기본요금 : {baseprice} 원
-단가 : {unitprice} 원
-전기요금 : {powerprice}원''')
+기본요금 : {baseprice:,} 원
+단가 : {unitprice:,} 원
+전기요금 : {powerprice:,}원''')
