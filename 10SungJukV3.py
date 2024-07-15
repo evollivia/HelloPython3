@@ -34,7 +34,7 @@ for i in range(1, 4):
 for i in range(3):
     tot = kors[i] + engs[i] + mats[i]
     tots.append(tot)
-    avg = tot / 3
+    avg = tot[i] / 3
     avgs.append(avg)
     grd = '수' if avg >= 90 else ('우' if avg >= 80 else ('미' if avg >= 70 else ('양' if avg >= 60 else '가')))
     grds.append(grd)
