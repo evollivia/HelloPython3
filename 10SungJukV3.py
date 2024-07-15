@@ -26,7 +26,7 @@ grds = []
 for i in range(1, 4):
     names.append(input(f'{i}번학생 이름 : '))
     kors.append(int(input(f'{i}번학생 국어 성적 : ')))
-    engs.append(int(input(f'{i}번학생 성적 : ')))
+    engs.append(int(input(f'{i}번학생 영어 성적 : ')))
     mats.append(int(input(f'{i}번학생 수학 성적 : ')))
 
 # 성적 처리
