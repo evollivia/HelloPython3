@@ -20,7 +20,7 @@ print(menus)
 # 리스트에서 요소(elements, item)별로 출력
 # 첫번째 요소의 위치값(index)은 0부터 시작
 print(menus[0], menus[1], menus[4])
-print(menus[5])     # index 범위 벗어남 - 오류발생!
+print(menus[5])  # index 범위 벗어남 - 오류발생!
 
 # 동적으로 리스트 추가하기
 menus = []
@@ -58,7 +58,70 @@ print(len('Hello, Worled!'))
 msg = input('메세지를 입력하세요 : ')
 print(f'입력받은 메세지 길이 : {len(msg)}')
 
-#
-#
-#
-#
+# 합격 여부 판정하기
+exam = [55, 35, 40, 70, 65, 30]
+
+## 과락여부
+cntFail = 0
+for i in range(6):
+    if exam[i] < 40:
+        cntFail += 1
+## 평균
+sum = 0
+for i in range(6):
+    sum += exam[i]
+avg = sum / 6
+
+## 합격 여부
+result = '아쉽습니다. 불합격하셨습니다.'
+if cntFail == 0 and avg >= 60:
+    result = '축하드립니다. 합격하셨습니다'
+
+## 평가
+print(f'''
+40점 미만 과목수 : {cntFail}
+평균점수 : {avg}
+결과 : {result}''')
+
+# 실습 예제2 - 혈액 보관 시스템
+bloods = []
+cntBlood = [0, 0, 0, 0]
+msg = '''헌혈해 주셔서 감사합니다. 혈액형을 선택하세요
+A, B, AB, O : '''
+
+for i in range(10):
+    bloods.append(input(msg))
+
+for i in range(10):
+    if bloods[i] == 'A':
+        cntBlood[0] += 1
+    elif bloods[i] == 'B':
+        cntBlood[1] += 1
+    elif bloods[i] == 'AB':
+        cntBlood[2] += 1
+    elif bloods[i] == 'O':
+        cntBlood[3] += 1
+
+line = '-' * 20
+# result = f'''
+# {line}
+# 혈액형 : 개수
+# {line}
+# A형 : {cntBlood[0]}
+# B형 : {cntBlood[1]}
+# AB형 : {cntBlood[2]}
+# O형 : {cntBlood[3]}
+# {line}
+# '''
+
+result = f'''
+{line}
+혈액형 : 개수
+{line}
+A형 : {bloods.count('A')}
+B형 : {bloods.count('B')}
+AB형 : {bloods.count('AB')}
+O형 : {bloods.count('O')}
+{line}
+'''
+print(result)
