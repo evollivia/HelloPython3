@@ -18,7 +18,8 @@ while True:
     if menu == '1':
         print('성적 데이터 추가')
         sj = sjv6.readSungJuk()
-        sjs = sjv6.addSungJuk(sj)
+        sjv6.addSungJuk(sj)
+        sjv6.saveSunJuk()
 
     elif menu == '2':
         print('성적 데이터 조회')
