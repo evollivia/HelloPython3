@@ -25,10 +25,10 @@ sjs = []
 def readSungJuk():
     sj = []
     cnt = len(sjs)
-    sj.append(input(f'{cnt}학생 이름 : '))
-    sj.append(int(input(f'{cnt}학생 국어 성적 : ')))
-    sj.append(int(input(f'{cnt}학생 영어 성적 : ')))
-    sj.append(int(input(f'{cnt}학생 수학 성적 : ')))
+    sj.append(input(f'{cnt+1}학생 이름 : '))
+    sj.append(int(input(f'{cnt+1}학생 국어 성적 : ')))
+    sj.append(int(input(f'{cnt+1}학생 영어 성적 : ')))
+    sj.append(int(input(f'{cnt+1}학생 수학 성적 : ')))
     return sj
 
 
@@ -42,7 +42,7 @@ def addSungJuk(sj):
                 '양' if sj[5] >= 60 else '가'
     sj.append(grd)
     sjs.append(sj)
-
+    saveSunJuk()
 
 # 리스트에 저장된 성적 데이터들 중 기본 데이터만 모아서 출력
 def showSungJuk():
@@ -55,7 +55,7 @@ def showSungJuk():
 # sungjukv.dat에 저장된 성적데이터를 읽어서
 # sjs 변수에 초기화
 def loadSunJuk():
-    with open('sungjuk.dat', encoding='UTF-8') as f:
+    with open('./ytafxt/sungjuk.dat', encoding='UTF-8') as f:
         lines = f.readlines()
     for line in lines:
         data = line.split(',')
@@ -64,10 +64,9 @@ def loadSunJuk():
 
 # 메모리에 생성된 sjs변수의 모든 성적 데이터를
 # sungjukv.dat에 저장
-def saveSunJuk(sjs):
-    with open('sungjuk.dat', 'a', encoding='UTF-8') as f:
-        for sj in sjs:
-            f.write(sj)
-
-# 데이터 초기화 함수 호출
-loadSunJuk()
+def saveSunJuk():
+    data = ''
+    for sj in sjs:
+        data += f'{sj[0]},{sj[1]},{sj[2]},{sj[3]},{sj[4]},{sj[5]},{sj[6]}\n'
+    with open('./ytafxt/sungjuk.dat', 'w', encoding='UTF-8') as f:
+        f.write(data)
