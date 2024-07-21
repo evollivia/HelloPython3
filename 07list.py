@@ -58,6 +58,38 @@ print(len('Hello, Worled!'))
 msg = input('메세지를 입력하세요 : ')
 print(f'입력받은 메세지 길이 : {len(msg)}')
 
+# 이터러블
+balls = ['야구공', '축구공', '농구공', '탁구공', '골프공']
+for b in balls:
+    print('ball :', b)
+
+for idx, b in enumerate(balls):
+    print('indx : ', idx, 'ball :', b)
+
+i = 0
+while i < len(balls):
+    print(balls[i])
+    i += 1
+
+# 인덱스 조회
+num = [1, 2, 3, 4, 5]
+print(num.index(1))
+print(num.index(5))
+
+str = 'python'
+print(str.index('th'))
+
+# 삽입
+num = [1, 2, 3, 4, 5]
+num.insert(2,10)
+print(num)
+
+# 리스트 연결
+list1 = [1,2,3]
+list2 = [4,5,6]
+list1.extend(list2)
+print(list1)
+
 # 합격 여부 판정하기
 exam = [55, 35, 40, 70, 65, 30]
 
