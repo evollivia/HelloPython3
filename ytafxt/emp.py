@@ -72,5 +72,14 @@ Job ID          : {data[6]}
 Salary          : {data[7]} 
 Commission PCT  : {data[8]} 
 Manager ID      : {data[9]}
-Department ID   : {data[10]:}''')
+Department ID   : {data[10]}''')
+    print(result)
+
+#
+def removeEmpData():
+    empid = int(input('삭제할 사원번호를 입력하세요. '))
+    result = '데이터가 존재하지 않음'
+    cnt = empdao.delEmpData(empid)
+    if cnt > 0:
+        result = f'{cnt}건의 데이터가 삭제됨'
     print(result)

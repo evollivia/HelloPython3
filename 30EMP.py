@@ -31,6 +31,7 @@ while True:
 
     elif menu == '5':
         print('사원 데이터 삭제')
+        emp.removeEmpData()
 
     elif menu == '0':
         print('프로그램 종료')
