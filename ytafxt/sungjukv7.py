@@ -39,17 +39,18 @@ def showSungJuk():
     result = ''
     sjs = readAllSungJuk()
     for sj in sjs:
-        result += f'이름 : {sj[0]}, 국어 : {sj[1]}, 영어 : {sj[2]} ,수학 : {sj[3]}\n'
+        result += f'번호 : {sj[0]}, 이름 : {sj[1]}, 국어 : {sj[2]}, 영어 : {sj[3]} ,수학 : {sj[4]}, 등록일 : {sj[5]}\n'
     print(result)
 
 # 학생 이름으로 성적 데이터 조회 후 출력
 def showOneSungJuk():
-    name = input('조회할 학생 이름은? ')
+    # name = input('조회할 학생 이름은? ')
+    sjno = input('조회할 학생 번호는? ')
     result = '데이터가 존재하지 않아요'
-    sj = readOneSungJuk(name)
+    sj = readOneSungJuk(sjno)
     if sj:      # 조회한 데이터가 존재한다면
-        result = (f'이름 : {sj[1]}, 국어 : {sj[2]}, 영어 : {sj[3]} ,수학 : {sj[4]}\n'
-                  f'총점 : {sj[5]}, 평균 : {sj[6]:.1f}, 학점 : {sj[7]}')
+        result = (f'번호 : {sj[0]}, 이름 : {sj[1]}, 국어 : {sj[2]}, 영어 : {sj[3]} ,수학 : {sj[4]}\n'
+                  f'총점 : {sj[5]}, 평균 : {sj[6]:.1f}, 학점 : {sj[7]}, 등록일 : {sj[8]}')
     print(result)
 
 #####################################################
@@ -93,7 +94,7 @@ def newSungJuk(sj):
 
 # 성적 데이터 전체 조회
 def readAllSungJuk():
-    sql = 'select name, korean, english, math from sungjuk'
+    sql = 'select sjno, name, korean, english, math, substr(regdate,0,11) regdate from sungjuk'
     conn = sqlite3.connect('db/python.db')
     cursor = conn.cursor()
     cursor.execute(sql)
@@ -103,11 +104,11 @@ def readAllSungJuk():
     return sjs
 
 # 학생 한명의 성적 상세 조회
-def readOneSungJuk(name):
-    sql = 'select * from sungjuk where name = ?'
+def readOneSungJuk(sjno):
+    sql = 'select * from sungjuk where sjno = ?'
     conn = sqlite3.connect('db/python.db')
     cursor = conn.cursor()
-    params = (name, )
+    params = (sjno, )
     cursor.execute(sql,params)
     sj = cursor.fetchone()
     cursor.close()
