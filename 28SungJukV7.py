@@ -6,7 +6,7 @@
 # 각 기능은 메뉴식으로 구현 - 기능별 메뉴 선택시 해당 명령 수행
 # 학생의 성적데이터는 sungjuk 테이블에 저장
 import sys
-import ytafxt.sungjukv6 as sjv7
+import ytafxt.sungjukv7 as sjv7
 
 # 메뉴 출력 및 메뉴별 처리
 while True:
@@ -22,10 +22,10 @@ while True:
     elif menu == '2':
         print('성적 데이터 조회')
         sjv7.showSungJuk()
-        sjv7.getTotalSungJuk()
 
     elif menu == '3':
         print('성적 데이터 상세조회')
+        sjv7.showAllSungJuk()
 
     elif menu == '4':
         print('성적 데이터 수정')

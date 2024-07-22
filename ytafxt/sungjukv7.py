@@ -20,7 +20,7 @@ def displayMenu():
 
 
 # 성적 데이터 입력받는 함수
-def readSungJuk(sj):
+def readSungJuk():
     sj = []
     cnt = getTotalSungJuk()
     sj.append(input(f'{cnt+1}학생 이름 : '))
@@ -28,7 +28,6 @@ def readSungJuk(sj):
     sj.append(int(input(f'{cnt+1}학생 영어 성적 : ')))
     sj.append(int(input(f'{cnt+1}학생 수학 성적 : ')))
     return sj
-
 
 # 입력받은 성적 데이터를 처리하고 테이블에 저장
 def addSungJuk(sj):
@@ -57,8 +56,6 @@ def getTotalSungJuk():
     conn.close()
     return cnt
 
-
-
 # 입력한 성적 데이터에 대해 성적처리하는 함수
 def computeSunJuk(sj):
     sj.append(sj[1] + sj[2] + sj[3])
@@ -71,9 +68,26 @@ def computeSunJuk(sj):
 
 # 처리된 성적데이터를 테이블에 저장
 def newSungJuk(sj):
-    pass
+    sql = 'insert into sungjuk(name, korean, english, math, total, average, grade)\
+           values (?, ?, ?, ?, ?, ?, ?)'
+    conn = sqlite3.connect('db/python.db')
+    cursor = conn.cursor()
+    params = (sj[0], sj[1], sj[2], sj[3], sj[4], sj[5], sj[6])
+    cursor.execute(sql, params)
+    print(cursor.rowcount, '건의 데이터가 추가됨')
+    conn.commit()
+    cursor.close()
+    conn.close()
 
 #
 def readAllSungJuk():
-    pass
+    sql = 'select name, korean, english, math from sungjuk'
+    conn = sqlite3.connect('db/python.db')
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    sjs = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return sjs
+
 
