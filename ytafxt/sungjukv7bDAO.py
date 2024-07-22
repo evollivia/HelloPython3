@@ -1,5 +1,6 @@
 import sqlite3
 
+
 # 성적 데이터 총 갯수 조회
 def getTotalSungJuk():
     sql = 'select count(sjno) + 1 toal from sungjuk;'
@@ -14,6 +15,7 @@ def getTotalSungJuk():
     conn.close()
     return cnt
 
+
 # 처리된 성적데이터를 테이블에 저장
 def newSungJuk(sj):
     sql = 'insert into sungjuk(name, korean, english, math, total, average, grade)\
@@ -27,6 +29,7 @@ def newSungJuk(sj):
     cursor.close()
     conn.close()
 
+
 # 성적 데이터 전체 조회
 def readAllSungJuk():
     sql = 'select sjno, name, korean, english, math, substr(regdate,0,11) regdate from sungjuk'
@@ -38,15 +41,28 @@ def readAllSungJuk():
     conn.close()
     return sjs
 
+
 # 학생 한명의 성적 상세 조회
 def readOneSungJuk(sjno):
     sql = 'select * from sungjuk where sjno = ?'
     conn = sqlite3.connect('db/python.db')
     cursor = conn.cursor()
-    params = (sjno, )
-    cursor.execute(sql,params)
+    params = (sjno,)
+    cursor.execute(sql, params)
     sj = cursor.fetchone()
     cursor.close()
     conn.close()
     return sj
 
+
+#
+def delSungJuk(sjno):
+    sql = 'delete from sungjuk where sjno = ?'
+    conn = sqlite3.connect('db/python.db')
+    cursor = conn.cursor()
+    params = (sjno,)
+    cursor.execute(sql, params)
+    print(cursor.rowcount, ' 건의 데이터가 삭제됨')
+    conn.commit()
+    cursor.close()
+    conn.close()

@@ -35,6 +35,7 @@ while True:
 
     elif menu == '5':
         print('성적 데이터 삭제')
+        sjv7.removeSungJuk()
 
     elif menu == '0':
         print('성적 프로그램 종료')
