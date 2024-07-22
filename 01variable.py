@@ -182,7 +182,7 @@ print(bool(''), bool('abc123'))
 #won = round(int(doller) * 1382.12 ,2)
 #print(won,'원')
 
-# 문자역 템플릿
+# 문자열 템플릿
 # 파이썬에서 문자열 속에 변수를 포함시켜 출력할 때 유용하게 사용하는 방법
 # f-string : python 3.6 부터 도입
 # f'문자열 {변수명: 포멧팅}'
