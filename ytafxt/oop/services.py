@@ -62,7 +62,13 @@ class SungJukService:
 
     @staticmethod
     def showone_sungjuk():
-        pass
+        sjno = input('조회할 학생 번호는? ')
+        result = '데이터가 존재하지 않아요'
+        sj = sjdao.selectone_sungjuk(sjno)
+        if sj:      # 조회한 데이터가 존재한다면
+            result = (f'번호 : {sj.sjno}, 이름 : {sj.name}, 국어 : {sj.korean}, 영어 : {sj.english} ,수학 : {sj.math}\n'
+                      f'총점 : {sj.total}, 평균 : {sj.average:.1f}, 학점 : {sj.grade}, 등록일 : {sj.regdate}')
+        print(result)
 
     @staticmethod
     def modify_sungjuk():
