@@ -25,10 +25,10 @@ def displayMenu():
 def readSungJuk():
     sj = []
     cnt = sjv7dao.getTotalSungJuk()
-    sj.append(input(f'{cnt+1}학생 이름 : '))
-    sj.append(int(input(f'{cnt+1}학생 국어 성적 : ')))
-    sj.append(int(input(f'{cnt+1}학생 영어 성적 : ')))
-    sj.append(int(input(f'{cnt+1}학생 수학 성적 : ')))
+    sj.append(input(f'{cnt}학생 이름 : '))
+    sj.append(int(input(f'{cnt}학생 국어 성적 : ')))
+    sj.append(int(input(f'{cnt}학생 영어 성적 : ')))
+    sj.append(int(input(f'{cnt}학생 수학 성적 : ')))
     return sj
 
 # 입력받은 성적 데이터를 처리하고 테이블에 저장
@@ -70,3 +70,23 @@ def removeSungJuk():
     sjno = int(input('삭제할 학생번호를 입력하세요. '))
     sjv7dao.delSungJuk(sjno)
 
+# 학생번호를 입력받아 데이터 수정
+def modifySungJuk():
+    sjno = int(input('수정할 학생번호를 입력하세요. '))
+    sj = sjv7dao.readOneSungJuk(sjno)
+    if sj:
+        sj = readAgainSungJuk(sj)
+        sjv7dao.updateSungJuk(sj)
+    else:
+        print('수정할 데이터가 존재하지 않아요')
+
+# 기존 성적 데이터를 확인하면서 수정할 성적데이터 재입력
+def readAgainSungJuk(sj):
+    nsj = []
+    nsj.append(sj[1])   # nsj[0] 학생이름
+    nsj.append(int(input(f'{sj[1]}학생의 국어 성적 수정({sj[2]}) : ')))
+    nsj.append(int(input(f'{sj[1]}학생의 영어 성적 수정({sj[3]}) : ')))
+    nsj.append(int(input(f'{sj[1]}학생의 수학 성적 수정({sj[4]}) : ')))
+    computeSunJuk(nsj)
+    nsj.append(sj[0])   # nsj[8] 학생번호
+    return nsj

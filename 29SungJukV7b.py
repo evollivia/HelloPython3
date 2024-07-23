@@ -7,7 +7,7 @@
 # 학생의 성적데이터는 sungjuk 테이블에 저장
 # 3 layer architecture 방식으로 재작성
 # 3layer = presentation + business + database
-#SungJukV7b (P) - db/sungjukv7b (S) - db/sungjukv7bDAO (D)
+# SungJukV7b (P) - db/sungjukv7b (S) - db/sungjukv7bDAO (D)
 import sys
 import ytafxt.sungjukv7b as sjv7
 
@@ -32,6 +32,7 @@ while True:
 
     elif menu == '4':
         print('성적 데이터 수정')
+        sjv7.modifySungJuk()
 
     elif menu == '5':
         print('성적 데이터 삭제')

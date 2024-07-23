@@ -66,3 +66,16 @@ def delSungJuk(sjno):
     conn.commit()
     cursor.close()
     conn.close()
+
+#
+def updateSungJuk(sj):
+    sql = 'update sungjuk set korean = ?, english = ?, math = ?, total = ?, average = ?, grade = ?\
+           where sjno = ?'
+    conn = sqlite3.connect('db/python.db')
+    cursor = conn.cursor()
+    params = (sj[1], sj[2], sj[3], sj[4], sj[5], sj[6], sj[7])
+    cursor.execute(sql, params)
+    print(cursor.rowcount, '건의 데이터가 수정됨')
+    conn.commit()
+    cursor.close()
+    conn.close()
