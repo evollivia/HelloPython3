@@ -202,18 +202,8 @@ class SungJukDAO:
         pass
 
 sjdao = SungJukDAO()
-sjdao.insertSungJuk()
+sjdao.insertSungJuk(sj)
 sjdao.selectSungJuk()
 sjdao.selectOneSungJuk(sjno)
 sjdao.updateSungJuk(sj)
 sjdao.deleteSungJuk(sjno)
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
