@@ -58,6 +58,18 @@ def delEmpData(empid):
     conn.commit()
     cursor.close()
     conn.close()
-    return  cnt
+    return cnt
 
-
+#
+def updateEmpData(data):
+    sql = ('update Employees set email = ?, phone = ?, jobid = ?, sal = ?, comm = ?, mgrid = ?, deptid = ?\
+           where empid = ?')
+    conn = sqlite3.connect('db/python.db')
+    cursor = conn.cursor()
+    params = (data[3], data[4], data[6], data[7], data[8], data[9], data[10], data[0])
+    cursor.execute(sql, params)
+    cnt = cursor.rowcount
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return cnt
