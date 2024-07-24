@@ -9,6 +9,10 @@ class SungJukService:
     # 정적 매서드로 정의된 함수는 self 매개변수 지정 x
     # 호출 방법 : 클래스명.함수명
     def display_menu():
+        """
+        프로그램 메뉴를 출력하고 사용자의 선택을 반환
+        :return menu: 선택된 메뉴 항목
+        """
         # 프로그램 메뉴 정의
         main_menu = '''
 ==========================
@@ -28,6 +32,10 @@ class SungJukService:
 
     @staticmethod
     def read_sungjuk():
+        """
+        학생의 이름, 성적을 입려받음
+        :return: SungJuk 객체
+        """
         name = (input(f'새로운 학생 이름 : '))
         korean = (int(input(f'새로운 학생 국어 성적 : ')))
         english = (int(input(f'새로운 학생 영어 성적 : ')))
@@ -36,6 +44,10 @@ class SungJukService:
 
     @staticmethod
     def add_sungjuk():
+        """
+        성적 데이터를 입력받고 처리한 후 데이터베이스에 저장
+        :return:
+        """
         sj = SungJukService.read_sungjuk()
         SungJukService.compute_sungjuk(sj)
         cnt = sjdao.insert_sungjuk(sj)
@@ -44,6 +56,11 @@ class SungJukService:
 
     @staticmethod
     def compute_sungjuk(sj):
+        """
+        입력받은 성적 데이터를 계산하여 총점, 평균, 등급을 구함
+        :param sj: Sungjuk 클래스의 인스턴스 (korean, english, math 속성이 있어야 함)
+        :return: None. sj 인스턴스의 총점, 평균, 등급 속성을 업데이트
+        """
         sj.total = sj.korean + sj.english + sj.math
         sj.average = sj.total / 3
         sj.grade = '가'
@@ -58,6 +75,10 @@ class SungJukService:
 
     @staticmethod
     def show_sungjuk():
+        """
+        성적 데이터를 조회하여 출력
+        :return:
+        """
         result = ''
         sjs = sjdao.select_sungjuk()
         for sj in sjs:
@@ -67,6 +88,10 @@ class SungJukService:
 
     @staticmethod
     def showone_sungjuk():
+        """
+        성적 데이터를 상세 조회하여 출력
+        :return:
+        """
         sjno = input('조회할 학생 번호는? ')
         result = '데이터가 존재하지 않아요'
         sj = sjdao.selectone_sungjuk(sjno)
@@ -77,6 +102,10 @@ class SungJukService:
 
     @staticmethod
     def modify_sungjuk():
+        """
+        학생의 성적 데이터 수정
+        :return:
+        """
         sjno = int(input('수정할 학생번호를 입력하세요. '))
         sj = sjdao.selectone_sungjuk(sjno)
         result = '수정할 데이터가 존재하지 않아요'
@@ -89,6 +118,11 @@ class SungJukService:
 
     @staticmethod
     def readagain_sungjuk(sj):
+        """
+        학생의 성적 정보를 다시 입력받아 수정된 성적 객체를 반환
+        :param sj: 기존의 성적 객체
+        :return: 수정된 성적 객체
+        """
         nsj = SungJuk(sj.name, None, None, None)
         nsj.korean = int(input(f'{sj.name} 학생의 국어 성적 수정({sj.korean}) : '))
         nsj.english = int(input(f'{sj.name} 학생의 영어 성적 수정({sj.english}) : '))
@@ -99,6 +133,10 @@ class SungJukService:
 
     @staticmethod
     def remove_sungjuk():
+        """
+        학생 번호를 기반으로 성적 데이터를 삭제
+        :return:
+        """
         sjno = int(input('삭제할 학생번호를 입력하세요. '))
         result = '데이터가 존재하지 않음'
         cnt = sjdao.delete_sungjuk(sjno)
