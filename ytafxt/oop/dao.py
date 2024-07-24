@@ -171,7 +171,8 @@ class EmployeeDAO:
     def insert_empdata(data):
         sql = "insert into Employees values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         conn, cursor = EmployeeDAO._make_conn()
-        params = (data.empid, data.fname, data.lname, data.email, data.phone, data.hdate, data.jobid, data.sal, data.comm, data.mgrid, data.deptid)
+        params = (data.empid, data.fname, data.lname, data.email, data.phone, data.hdate,
+                  data.jobid, data.sal, data.comm, data.mgrid, data.deptid)
         cursor.execute(sql, params)
         cnt = cursor.rowcount
         conn.commit()
@@ -180,13 +181,18 @@ class EmployeeDAO:
 
     # 사원 데이터 전체 조회
     @staticmethod
-    def readall_empdata():
+    def select_empdata():
+        emps = []
         sql = 'select empid, fname, email, jobid, deptid from Employees'
         conn, cursor = EmployeeDAO._make_conn()
         cursor.execute(sql)
-        datas = cursor.fetchall()
+        rs = cursor.fetchall()
+        for r in rs:
+            emp = Employee(r[0], r[1], None, r[2], None,
+                           None, r[3], None, None, None, r[4])
+            emps.append(emp)
         EmployeeDAO._dis_conn(conn, cursor)
-        return datas
+        return emps
 
     # 사원 한명의 성적 상세 조회
     @staticmethod

@@ -203,12 +203,16 @@ class EmployeeService:
     # 테이블에 저장된 사원 데이터들 중 기본 데이터만 모아서 출력
     @staticmethod
     def show_empdata():
+        """
+        사원 테이블에서 사원번호, 이름, 이메일, 직책, 부서번호 출력
+        :return emps: 조회된 사원 정보
+        """
         result = ''
-        datas = empdao.readall_empdata()
+        datas = empdao.select_empdata()
         for data in datas:
-            result += f'사원번호 : {data[0]}, 이름 : {data[1]}, 이메일 : {data[2]}, 직책 : {data[3]} ,부서번호 : {data[4]}\n'
+            result += f'사원번호 : {data.empid}, 이름 : {data.fname}, 이메일 : {data.email}, 직책 : {data.jobid} ,부서번호 : {data.deptid}\n'
         print(result)
-
+    # empid, fname, lname, email, phone, hdate, jobid, sal, comm, mgrid, deptid
     # 사원번호로 사원 데이터 조회 후 출력
     @staticmethod
     def showone_empdata():
