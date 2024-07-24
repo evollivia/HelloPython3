@@ -212,25 +212,25 @@ class EmployeeService:
         for data in datas:
             result += f'사원번호 : {data.empid}, 이름 : {data.fname}, 이메일 : {data.email}, 직책 : {data.jobid} ,부서번호 : {data.deptid}\n'
         print(result)
-    # empid, fname, lname, email, phone, hdate, jobid, sal, comm, mgrid, deptid
+
     # 사원번호로 사원 데이터 조회 후 출력
     @staticmethod
     def showone_empdata():
         empid = input('조회할 사원 번호를 입력하세요. ')
         result = '데이터가 존재하지 않아요'
-        data = empdao.readone_empdata(empid)
+        data = empdao.selectone_empdata(empid)
         if data:      # 조회한 데이터가 존재한다면
-            result = (f'''Employee ID     : {data[0]} 
-First Name      : {data[1]} 
-Last Name       : {data[2]} 
-Email           : {data[3]}
-Phone Number    : {data[4]}
-Hire Date       : {data[5]} 
-Job ID          : {data[6]} 
-Salary          : {data[7]} 
-Commission PCT  : {data[8]} 
-Manager ID      : {data[9]}
-Department ID   : {data[10]}''')
+            result = (f'''Employee ID     : {data.empid} 
+First Name      : {data.fname} 
+Last Name       : {data.lname} 
+Email           : {data.email}
+Phone Number    : {data.phone}
+Hire Date       : {data.hdate} 
+Job ID          : {data.jobid} 
+Salary          : {data.sal} 
+Commission PCT  : {data.comm} 
+Manager ID      : {data.mgrid}
+Department ID   : {data.deptid}''')
         print(result)
 
     #

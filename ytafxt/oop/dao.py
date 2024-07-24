@@ -196,14 +196,19 @@ class EmployeeDAO:
 
     # 사원 한명의 성적 상세 조회
     @staticmethod
-    def readone_empdata(empid):
+    def selectone_empdata(empid):
         sql = 'select * from Employees where empid = %s'
         conn, cursor = EmployeeDAO._make_conn()
         params = (empid, )
         cursor.execute(sql,params)
-        data = cursor.fetchone()
+        rs = cursor.fetchone()
+        if rs:
+            emp = Employee(rs[0], rs[1], rs[2], rs[3], rs[4],
+                           rs[5], rs[6], rs[7], rs[8], rs[9], rs[10])
+        else:
+            emp = None
         EmployeeDAO._dis_conn(conn, cursor)
-        return data
+        return emp
 
     #
     @staticmethod
