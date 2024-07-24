@@ -67,8 +67,17 @@ class SungJukDAO:
         SungJukDAO._dis_conn(conn, cursor)
         return sj
 
-    def update_sungjuk(self):
-        pass
+    @staticmethod
+    def update_sungjuk(sj):
+        sql = 'update sungjuk set korean = ?, english = ?, math = ?, total = ?, average = ?, grade = ?\
+           where sjno = ?'
+        conn, cursor = SungJukDAO._make_conn()
+        params = (sj.korean, sj.english, sj.math, sj.total, sj.average, sj.grade, sj.sjno)
+        cursor.execute(sql, params)
+        cnt = cursor.rowcount
+        conn.commit()
+        SungJukDAO._dis_conn(conn, cursor)
+        return cnt
 
     @staticmethod
     def delete_sungjuk(sjno):
