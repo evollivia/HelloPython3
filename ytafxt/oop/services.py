@@ -247,7 +247,7 @@ Department ID   : {data.deptid}''')
     @staticmethod
     def modify_empdata():
         empid = int(input('수정할 사원번호를 입력하세요. '))
-        data = empdao.readone_empdata(empid)
+        data = empdao.selectone_empdata(empid)
         result = '수정할 데이터가 존재하지 않아요'
         if data:
             data = EmployeeService.readagain_empdata(data)
@@ -258,19 +258,20 @@ Department ID   : {data.deptid}''')
     #
     @staticmethod
     def readagain_empdata(data):
-        emps = []
-        emps.append(data[0])
-        emps.append(data[1])
-        emps.append(data[2])
-        emps.append(input(f'{data[1]}사원의 이메일 수정({data[3]}) : '))
-        emps.append(input(f'{data[1]}사원의 전화번호 수정({data[4]}) : '))
-        emps.append(data[5])
-        emps.append(input(f'{data[1]}사원의 직책 수정({data[6]}) : '))
-        emps.append(input(f'{data[1]}사원의 급여 수정({data[7]}) : '))
-        emps.append(input(f'{data[1]}사원의 수당 수정({data[8]}) : '))
-        emps.append(input(f'{data[1]}사원의 상사번호 수정({data[9]}) : '))
-        emps.append(input(f'{data[1]}사원의 부서번호 수정({data[10]}) : '))
-        emps[8] = float(emps[8]) if emps[8] != 0 else None
-        emps[9] = int(emps[9]) if emps[9] != 0 else None
-        emps[10] = int(emps[10]) if emps[10] != 0 else None
-        return emps
+        nemp = Employee(data.empid, data.fname, data.lname, None, None, data.hdate,
+                               None, None, None, None, None)
+        nemp.empid = data.empid
+        nemp.fname = data.fname
+        nemp.lname = data.lname
+        nemp.email = input(f'{data.fname}사원의 이메일 수정({data.email}) : ')
+        nemp.phone = input(f'{data.fname}사원의 전화번호 수정({data.phone}) : ')
+        nemp.hdate = data.hdate
+        nemp.jobid = input(f'{data.fname}사원의 직책 수정({data.jobid}) : ')
+        nemp.sal = input(f'{data.fname}사원의 급여 수정({data.sal}) : ')
+        nemp.comm = input(f'{data.fname}사원의 수당 수정({data.comm}) : ')
+        nemp.mgrid = input(f'{data.fname}사원의 상사번호 수정({data.mgrid}) : ')
+        nemp.deptid = input(f'{data.fname}사원의 부서번호 수정({data.deptid}) : ')
+        nemp.comm = float(data.comm) if data.comm != 0 else None
+        nemp.mgrid = int(data.mgrid) if data.mgrid != 0 else None
+        nemp.deptid = int(data.deptid) if data.deptid != 0 else None
+        return nemp

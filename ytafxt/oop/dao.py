@@ -222,7 +222,7 @@ class EmployeeDAO:
         EmployeeDAO._dis_conn(conn, cursor)
         return cnt
 
-    #
+    
     @staticmethod
     def update_empdata(data):
         sql = ('update Employees set email = %s, phone = %s, jobid = %s, sal = %s, comm = %s, mgrid = %s, deptid = %s\
