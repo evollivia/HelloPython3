@@ -258,20 +258,15 @@ Department ID   : {data.deptid}''')
     #
     @staticmethod
     def readagain_empdata(data):
-        nemp = Employee(data.empid, data.fname, data.lname, None, None, data.hdate,
-                               None, None, None, None, None)
-        nemp.empid = data.empid
-        nemp.fname = data.fname
-        nemp.lname = data.lname
-        nemp.email = input(f'{data.fname}사원의 이메일 수정({data.email}) : ')
-        nemp.phone = input(f'{data.fname}사원의 전화번호 수정({data.phone}) : ')
-        nemp.hdate = data.hdate
-        nemp.jobid = input(f'{data.fname}사원의 직책 수정({data.jobid}) : ')
-        nemp.sal = input(f'{data.fname}사원의 급여 수정({data.sal}) : ')
-        nemp.comm = input(f'{data.fname}사원의 수당 수정({data.comm}) : ')
-        nemp.mgrid = input(f'{data.fname}사원의 상사번호 수정({data.mgrid}) : ')
-        nemp.deptid = input(f'{data.fname}사원의 부서번호 수정({data.deptid}) : ')
-        nemp.comm = float(data.comm) if data.comm != 0 else None
-        nemp.mgrid = int(data.mgrid) if data.mgrid != 0 else None
-        nemp.deptid = int(data.deptid) if data.deptid != 0 else None
-        return nemp
+        email = input(f'{data.fname}사원의 이메일 수정({data.email}) : ')
+        phone = input(f'{data.fname}사원의 전화번호 수정({data.phone}) : ')
+        jobid = input(f'{data.fname}사원의 직책 수정({data.jobid}) : ')
+        sal = input(f'{data.fname}사원의 급여 수정({data.sal}) : ')
+        comm = input(f'{data.fname}사원의 수당 수정({data.comm}) : ')
+        mgrid = input(f'{data.fname}사원의 상사번호 수정({data.mgrid}) : ')
+        deptid = input(f'{data.fname}사원의 부서번호 수정({data.deptid}) : ')
+        comm = float(comm) if comm != 0 else None
+        mgrid = int(mgrid) if mgrid != 0 else None
+        deptid = int(deptid) if deptid != 0 else None
+        return Employee(data.empid, data.fname, data.lname, email,
+                        phone, data.hdate, jobid, sal, comm, mgrid, deptid)
