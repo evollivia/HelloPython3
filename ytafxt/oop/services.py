@@ -67,13 +67,13 @@ class SungJukService:
         sj.total = sj.korean + sj.english + sj.math
         sj.average = sj.total / 3
         sj.grade = '가'
-        if (sj.average >= 90):
+        if sj.average >= 90:
             sj.grade = '수'
-        elif (sj.average >= 80):
+        elif sj.average >= 80:
             sj.grade = '우'
-        elif (sj.average >= 70):
+        elif sj.average >= 70:
             sj.grade = '미'
-        elif (sj.average >= 60):
+        elif sj.average >= 60:
             sj.grade = '양'
 
     @staticmethod
@@ -117,7 +117,6 @@ class SungJukService:
             cnt = sjdao.update_sungjuk(sj)
             result = f'{cnt}건의 데이터가 수정됨'
             print(result)
-
 
     @staticmethod
     def readagain_sungjuk(sj):
@@ -199,7 +198,6 @@ class EmployeeService:
         cnt = empdao.insert_empdata(data)
         print(f'{cnt}건의 데이터가 추가됨')
 
-
     # 테이블에 저장된 사원 데이터들 중 기본 데이터만 모아서 출력
     @staticmethod
     def show_empdata():
@@ -210,7 +208,8 @@ class EmployeeService:
         result = ''
         datas = empdao.select_empdata()
         for data in datas:
-            result += f'사원번호 : {data.empid}, 이름 : {data.fname}, 이메일 : {data.email}, 직책 : {data.jobid} ,부서번호 : {data.deptid}\n'
+            result += (f'사원번호 : {data.empid}, 이름 : {data.fname}, 이메일 : {data.email}, 직책 : {data.jobid} '
+                       f',부서번호 : {data.deptid}\n')
         print(result)
 
     # 사원번호로 사원 데이터 조회 후 출력
@@ -219,7 +218,7 @@ class EmployeeService:
         empid = input('조회할 사원 번호를 입력하세요. ')
         result = '데이터가 존재하지 않아요'
         data = empdao.selectone_empdata(empid)
-        if data:      # 조회한 데이터가 존재한다면
+        if data:  # 조회한 데이터가 존재한다면
             result = (f'''Employee ID     : {data.empid} 
 First Name      : {data.fname} 
 Last Name       : {data.lname} 
@@ -258,20 +257,15 @@ Department ID   : {data.deptid}''')
     #
     @staticmethod
     def readagain_empdata(data):
-        nemp = Employee(data.empid, data.fname, data.lname, None, None, data.hdate,
-                               None, None, None, None, None)
-        nemp.empid = data.empid
-        nemp.fname = data.fname
-        nemp.lname = data.lname
-        nemp.email = input(f'{data.fname}사원의 이메일 수정({data.email}) : ')
-        nemp.phone = input(f'{data.fname}사원의 전화번호 수정({data.phone}) : ')
-        nemp.hdate = data.hdate
-        nemp.jobid = input(f'{data.fname}사원의 직책 수정({data.jobid}) : ')
-        nemp.sal = input(f'{data.fname}사원의 급여 수정({data.sal}) : ')
-        nemp.comm = input(f'{data.fname}사원의 수당 수정({data.comm}) : ')
-        nemp.mgrid = input(f'{data.fname}사원의 상사번호 수정({data.mgrid}) : ')
-        nemp.deptid = input(f'{data.fname}사원의 부서번호 수정({data.deptid}) : ')
-        nemp.comm = float(data.comm) if data.comm != 0 else None
-        nemp.mgrid = int(data.mgrid) if data.mgrid != 0 else None
-        nemp.deptid = int(data.deptid) if data.deptid != 0 else None
-        return nemp
+        email = input(f'{data.fname}사원의 이메일 수정({data.email}) : ')
+        phone = input(f'{data.fname}사원의 전화번호 수정({data.phone}) : ')
+        jobid = input(f'{data.fname}사원의 직책 수정({data.jobid}) : ')
+        sal = input(f'{data.fname}사원의 급여 수정({data.sal}) : ')
+        comm = input(f'{data.fname}사원의 수당 수정({data.comm}) : ')
+        mgrid = input(f'{data.fname}사원의 상사번호 수정({data.mgrid}) : ')
+        deptid = input(f'{data.fname}사원의 부서번호 수정({data.deptid}) : ')
+        comm = float(comm) if comm != 0 else None
+        mgrid = int(mgrid) if mgrid != 0 else None
+        deptid = int(deptid) if deptid != 0 else None
+        return Employee(data.empid, data.fname, data.lname, email,
+                        phone, data.hdate, jobid, sal, comm, mgrid, deptid)

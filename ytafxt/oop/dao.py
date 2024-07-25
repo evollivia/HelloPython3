@@ -10,6 +10,7 @@ dbname = 'clouds2024'
 user = 'clouds2024'
 passwd = 'clouds2024'
 
+
 # 성적 DAO 클래스
 class SungJukDAO:
     # 데이터베이스 연결객체와 커서생성
@@ -64,7 +65,7 @@ class SungJukDAO:
         cursor.execute(sql)
 
         rs = cursor.fetchall()
-        for r in rs:    # 조회 결과를 SungJuk 객체에 개별 저장
+        for r in rs:  # 조회 결과를 SungJuk 객체에 개별 저장
             sj = SungJuk(r[1], r[2], r[3], r[4])
             sj.sjno = r[0]
             sj.regdate = r[5]
@@ -131,6 +132,7 @@ class SungJukDAO:
         SungJukDAO._dis_conn(conn, cursor)
         return rss
 
+
 # 사원 DAO 클래스
 class EmployeeDAO:
     @staticmethod
@@ -144,6 +146,7 @@ class EmployeeDAO:
         return conn, cursor
 
         # 데이터베이스 연결객체와 커서 종료
+
     @staticmethod
     def _dis_conn(conn, cursor):
         """
@@ -199,8 +202,8 @@ class EmployeeDAO:
     def selectone_empdata(empid):
         sql = 'select * from Employees where empid = %s'
         conn, cursor = EmployeeDAO._make_conn()
-        params = (empid, )
-        cursor.execute(sql,params)
+        params = (empid,)
+        cursor.execute(sql, params)
         rs = cursor.fetchone()
         if rs:
             emp = Employee(rs[0], rs[1], rs[2], rs[3], rs[4],
@@ -222,7 +225,6 @@ class EmployeeDAO:
         EmployeeDAO._dis_conn(conn, cursor)
         return cnt
 
-    
     @staticmethod
     def update_empdata(data):
         sql = ('update Employees set email = %s, phone = %s, jobid = %s, sal = %s, comm = %s, mgrid = %s, deptid = %s\
